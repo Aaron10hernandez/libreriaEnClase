@@ -4,7 +4,7 @@
  */
 package com.mycompany.sistembiblioteca.modelos;
 
-import com.mycompany.sistembiblioteca.Modelos.Autor;
+import com.mycompany.sistembiblioteca.modelos.Autor;
 import com.mycompany.sistembiblioteca.modelos.Categoria;
 
 

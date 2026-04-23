@@ -4,7 +4,7 @@
  */
 package com.mycompany.sistembiblioteca.modelos;
 
-import com.mycompany.sistembiblioteca.Modelos.Libro;
+import com.mycompany.sistembiblioteca.modelos.Libro;
 import java.util.ArrayList;
 
 /**

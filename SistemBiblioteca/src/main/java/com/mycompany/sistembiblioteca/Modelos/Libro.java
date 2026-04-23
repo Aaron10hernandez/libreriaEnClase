@@ -4,6 +4,9 @@
  */
 package com.mycompany.sistembiblioteca.Modelos;
 
+import com.mycompany.sistembiblioteca.Modelos.Autor;
+import com.mycompany.sistembiblioteca.modelos.Categoria;
+
 
 /**
  *
@@ -14,4 +17,43 @@ public class Libro {
     private static final String titulo = "El mago de Oz";
     private Autor autor;
     private Categoria categoria;
+
+    public Libro() {
+    }
+
+    public Libro(Autor autor, Categoria categoria) {
+        this.autor = autor;
+        this.categoria = categoria;
+    }
+
+    public static String getIsbn() {
+        return isbn;
+    }
+
+    public static String getTitulo() {
+        return titulo;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Libro{" + "autor=" + autor + ", categoria=" + categoria + '}';
+    }
+    
+    
 }

@@ -4,6 +4,8 @@
 
 package com.mycompany.sistembiblioteca;
 
+import java.util.Scanner;
+
 /**
  *
  * @author USUARIO
@@ -11,7 +13,85 @@ package com.mycompany.sistembiblioteca;
 public class SistemBiblioteca {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("=======SISTEMA GESTION BIBLIOTECA==========");
+        
+        int opcion=0;
+        
+        do{
+            System.out.println("1. Crear nueva categoria");
+            System.out.println("2. Agregar nuevo Autor");
+            System.out.println("3. Agregar nuevo Libro");
+            System.out.println("4. Realizar Préstamo");
+            System.out.println("5. Devolver Libro Prestado");
+            System.out.println("6. Ver Libros Disponibles");
+            System.out.println("7. Ver Detalles de Autor");
+            System.out.println("8. Ver Libros de una Categoría");
+            System.out.println("9. Ver Multas Acumuladas");
+            System.out.println("10. Ver Estadísticas");
+            System.out.println("0. Salir");
+            
+            switch(opcion){
+                
+                case 1:
+                    
+                    
+                    
+                    
+                    break;
+                  
+                case 2:
+                    
+                    break;
+                    
+                case 3:
+                    
+                    break;
+                    
+                case 4:
+                    
+                    break; 
+                    
+                case 5:
+                    
+                    break;
+                  
+                case 6:
+                    
+                    break;
+                    
+                case 7:
+                    
+                    break;
+                    
+                case 8:
+                    
+                    break;
+                    
+                case 9:
+                    
+                    break;
+                  
+                case 10:
+                    
+                    break;
+                    
+                case 0:
+                    System.exit(0);
+                    break;    
+                    
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+        }while(opcion != 0) ;
+        
     }
 }
        

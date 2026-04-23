@@ -4,11 +4,14 @@
  */
 package com.mycompany.sistembiblioteca.Modelos;
 
+
 /**
  *
  * @author ESTUDIANTE
  */
 public class Libro {
-    private String Id;
-    private String nombre;
+    private static final String isbn = "010101";
+    private static final String titulo = "El mago de Oz";
+    private Autor autor;
+    private Categoria categoria;
 }

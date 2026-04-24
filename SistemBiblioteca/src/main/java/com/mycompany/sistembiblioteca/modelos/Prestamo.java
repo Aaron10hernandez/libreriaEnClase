@@ -19,7 +19,11 @@ public class Prestamo {
 
     public Prestamo(Libro libro, String usuario, String fecha) {
 
+
         this.id = UUID.randomUUID().toString();
+
+        this.id = contadorId++;
+
 
         this.id = contadorId++;
 
@@ -64,7 +68,7 @@ public class Prestamo {
     public String getFecha() {
         return fecha;
     }
-    
+
 
     public String getId() { 
         return id; 
@@ -89,6 +93,13 @@ public class Prestamo {
         System.out.println("Libro '" + libro.getTitulo() + "' prestado exitosamente!");
         }
     
+
+    
+    
+    public int getId() { return id; }
+    public Libro getLibro() { return libro; }
+    
+
 
     
     

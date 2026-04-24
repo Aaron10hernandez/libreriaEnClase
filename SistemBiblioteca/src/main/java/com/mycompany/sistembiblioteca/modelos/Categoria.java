@@ -34,7 +34,9 @@ public class Categoria {
         return name; 
     }
     
-    public ArrayList<Libro> getLibros() { return libros; }
+    public ArrayList<Libro> getLibros() {
+        return libros; 
+    }
 
     @Override
     public String toString() {
@@ -59,13 +61,13 @@ public class Categoria {
 
         
     public ArrayList<Libro> buscarLibrosPorCategoria() {
-        return this.Libros;
+        return this.libros;
     }
 
 
     public ArrayList<Libro> buscarLibrosPorCategoria(boolean soloDisponibles) {
         ArrayList<Libro> resultado = new ArrayList<>();
-        for (Libro libro : this.Libros) {
+        for (Libro libro : this.libros) {
             if (!soloDisponibles || libro.isDisponible()) {
             resultado.add(libro);
             }
@@ -73,8 +75,6 @@ public class Categoria {
         return resultado;
     }
 
-}
-    
     public static Libro buscarNombreLibro(String nombre, Biblioteca biblioteca){
             
         Libro variable = null;
@@ -93,6 +93,9 @@ public class Categoria {
         }
         return variable;
     }
-    
 }
+    
+    
+    
+
 

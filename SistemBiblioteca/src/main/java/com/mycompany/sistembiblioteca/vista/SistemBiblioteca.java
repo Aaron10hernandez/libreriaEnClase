@@ -109,6 +109,11 @@ public class SistemBiblioteca {
                     
                 case 5:
                     
+                    System.out.println("LIBROS DISPONIBLES:");
+                    
+                    for(int i =0, i<)
+                        System.out.println(biblioteca.getCategorias().get(i));
+                    
                     break;
                   
                 case 6:

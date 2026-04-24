@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.sistembiblioteca.modelos;
-
 import com.mycompany.sistembiblioteca.modelos.Libro;
 import java.util.ArrayList;
 
@@ -57,7 +56,7 @@ public class Categoria {
 
         
     public ArrayList<Libro> buscarLibrosPorCategoria() {
-        return this.Libros;
+        return this.libros;
     }
 
 

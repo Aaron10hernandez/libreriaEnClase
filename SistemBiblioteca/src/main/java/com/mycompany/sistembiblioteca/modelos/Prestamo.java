@@ -15,19 +15,51 @@ public class Prestamo {
     private Libro libro;
     private String usuario;
     private String fecha;
+    
 
     public Prestamo(Libro libro, String usuario, String fecha) {
         this.id = contadorId++;
         this.libro = libro;
         this.usuario = usuario;
         this.fecha = fecha;
-        this.libro.setDisponible(false);
     }
 
+    public static void setContadorId(int contadorId) {
+        Prestamo.contadorId = contadorId;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public static int getContadorId() {
+        return contadorId;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+    
+    
+    
     public int getId() { return id; }
     public Libro getLibro() { return libro; }
     
-    public void devolver() {
-        this.libro.setDisponible(true);
+    public void devolver(Libro libro) {
+        
+        libro.setDisponible(true);
+        
     }
 }

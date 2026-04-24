@@ -37,16 +37,16 @@ public class Biblioteca {
         return prestamos;
     }
 
-    public void setCategorias(ArrayList<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setCategorias(Categoria nuevaCategoria) {
+        this.categorias.add(nuevaCategoria);
     }
 
-    public void setAutores(ArrayList<Autor> autores) {
-        this.autores = autores;
+    public void setAutores(Autor nuevoAutor) {
+        this.autores.add(nuevoAutor);
     }
 
-    public void setPrestamos(ArrayList<Prestamo> prestamos) {
-        this.prestamos = prestamos;
+    public void setPrestamos(Prestamo nuevoPrestamo) {
+        this.prestamos.add(nuevoPrestamo);
     }
     
     

@@ -17,6 +17,7 @@ public class Libro {
     private static final String titulo = "El mago de Oz";
     private Autor autor;
     private Categoria categoria;
+    private boolean disponible;
 
     public Libro() {
     }

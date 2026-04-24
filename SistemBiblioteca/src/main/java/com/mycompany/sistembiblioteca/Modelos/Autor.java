@@ -10,14 +10,12 @@ package com.mycompany.sistembiblioteca.modelos;
  */
 public class Autor {
     private String idAutor;
-    private  final String name = "";
+    private  final String name;
     private String paisAutor;
     private int anioNacimientoAutor;
 
-    public Autor() {
-    }
-
-    public Autor(String idAutor, String paisAutor, int anioNacimientoAutor) {
+    public Autor(String name, String idAutor, String paisAutor, int anioNacimientoAutor) {
+        this.name = name;
         this.idAutor = idAutor;
         this.paisAutor = paisAutor;
         this.anioNacimientoAutor = anioNacimientoAutor;

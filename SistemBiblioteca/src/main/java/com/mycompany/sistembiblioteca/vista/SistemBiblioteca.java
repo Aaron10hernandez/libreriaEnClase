@@ -4,6 +4,7 @@
 
 package com.mycompany.sistembiblioteca.vista;
 
+import com.mycompany.sistembiblioteca.modelos.Biblioteca;
 import com.mycompany.sistembiblioteca.modelos.Categoria;
 import java.util.Scanner;
 
@@ -14,7 +15,10 @@ import java.util.Scanner;
 public class SistemBiblioteca {
 
     public static void main(String[] args) {
+        
+        Biblioteca biblioteca = new Biblioteca();
         Scanner sc = new Scanner(System.in);
+        
         System.out.println("=======SISTEMA GESTION BIBLIOTECA==========");
         
         int opcion=0;
@@ -40,11 +44,13 @@ public class SistemBiblioteca {
                     String nombre = sc.nextLine();
                     Categoria nuevaCategoria = new Categoria(nombre);
                     
+                    biblioteca.setCategorias(nuevaCategoria);
                     
                     break;
                   
                 case 2:
                     System.out.println("Ingrese nombre del nuevo autor: ");
+                    String esrito
                     
                     
                     break;

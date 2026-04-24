@@ -84,7 +84,7 @@ public class Categoria {
             
             for(int j=0; j < categoriaActual.getLibros().size(); j++  ){
                 
-                if(nombre == categoriaActual.getLibros().get(j).getTitulo()){
+                if(nombre.equals(categoriaActual.getLibros().get(j).getTitulo()))   {
                     
                     variable=categoriaActual.getLibros().get(j);
                 }

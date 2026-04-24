@@ -60,6 +60,7 @@ public class Prestamo {
     public void devolver(Libro libro) {
         
         libro.setDisponible(true);
+        System.out.println("Libro devuelto exitosamente!");
         
     }
 }

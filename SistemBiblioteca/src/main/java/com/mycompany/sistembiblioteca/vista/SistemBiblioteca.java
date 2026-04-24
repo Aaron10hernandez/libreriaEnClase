@@ -4,6 +4,7 @@
 
 package com.mycompany.sistembiblioteca.vista;
 
+import com.mycompany.sistembiblioteca.modelos.Autor;
 import com.mycompany.sistembiblioteca.modelos.Biblioteca;
 import com.mycompany.sistembiblioteca.modelos.Categoria;
 import java.util.Scanner;
@@ -49,13 +50,27 @@ public class SistemBiblioteca {
                     break;
                   
                 case 2:
+                    System.out.println("Ingrese id del nuevo autor: ");
+                    String id = sc.nextLine();
                     System.out.println("Ingrese nombre del nuevo autor: ");
-                    String esrito
+                    nombre = sc.nextLine();
+                    System.out.println("Ingrese pais del nuevo autor: ");
+                    String pais = sc.nextLine();
+                    System.out.println("Ingrese anio de nacimiento del nuevo autor: ");
+                    int anio = sc.nextInt();
                     
+                    Autor nuevoAutor = new Autor(nombre,id,pais,anio);
+                    biblioteca.setAutores(nuevoAutor);
                     
                     break;
                     
                 case 3:
+                    System.out.println("Ingrese titulo del nuevo libro: ");
+                    nombre = sc.nextLine();
+                    System.out.println("Ingrese el isbn del nuevo libro: ");
+                    String isbn = sc.nextLine();
+                    System.out.println("Ingrese titulo del nuevo libro: ");
+                    
                     
                     break;
                     

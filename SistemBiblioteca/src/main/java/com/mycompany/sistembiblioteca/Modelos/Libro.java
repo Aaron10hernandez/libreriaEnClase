@@ -13,25 +13,25 @@ import com.mycompany.sistembiblioteca.modelos.Categoria;
  * @author ESTUDIANTE
  */
 public class Libro {
-    private static final String isbn = "010101";
-    private static final String titulo = "El mago de Oz";
+    private final String isbn;
+    private final String titulo;
     private Autor autor;
     private Categoria categoria;
     private boolean disponible;
 
-    public Libro() {
-    }
-
-    public Libro(Autor autor, Categoria categoria) {
+    public Libro(String isbn, String titulo, Autor autor, Categoria categoria, boolean disponible) {
+        this.isbn = isbn;
+        this.titulo = titulo;
         this.autor = autor;
         this.categoria = categoria;
+        this.disponible = disponible;
     }
 
-    public static String getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
-    public static String getTitulo() {
+    public String getTitulo() {
         return titulo;
     }
 
@@ -43,6 +43,10 @@ public class Libro {
         return categoria;
     }
 
+    public boolean isDisponible() {
+        return disponible;
+    }
+
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
@@ -51,10 +55,17 @@ public class Libro {
         this.categoria = categoria;
     }
 
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     @Override
     public String toString() {
-        return "Libro{" + "autor=" + autor + ", categoria=" + categoria + '}';
+        return "Libro{" + "isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", categoria=" + categoria + ", disponible=" + disponible + '}';
     }
+
+    
+    
     
     
 }

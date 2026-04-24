@@ -10,7 +10,7 @@ package com.mycompany.sistembiblioteca.modelos;
  */
 public class Autor {
     private String idAutor;
-    private static final String name = "";
+    private  final String name = "";
     private String paisAutor;
     private int anioNacimientoAutor;
 
@@ -27,7 +27,7 @@ public class Autor {
         return idAutor;
     }
 
-    public static String getName() {
+    public final String getName() {
         return name;
     }
 

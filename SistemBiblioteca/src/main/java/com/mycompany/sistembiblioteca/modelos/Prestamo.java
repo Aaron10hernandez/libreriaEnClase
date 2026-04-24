@@ -12,7 +12,6 @@ import java.util.UUID;
  */
 public class Prestamo {
     
-    private static int contadorId = 1;
     private final String id;
     private Libro libro;
     private String usuario;
@@ -21,7 +20,6 @@ public class Prestamo {
 
     public Prestamo(Libro libro, String usuario, String fecha) {
         this.id = UUID.randomUUID().toString();
-        this.contadorId = contadorId++;
         this.libro = libro;
         this.usuario = usuario;
         this.fecha = fecha;

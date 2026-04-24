@@ -38,7 +38,7 @@ public class SistemBiblioteca {
             System.out.println("8. Ver Libros de una Categoría");
             System.out.println("9. Ver Multas Acumuladas");
             System.out.println("10. Ver Estadísticas");
-            System.out.println("0. Salir");
+            System.out.println("11. Salir");
             
             switch(opcion){
                 
@@ -85,6 +85,7 @@ public class SistemBiblioteca {
                     
                 case 4:
                     
+                    
                     break; 
                     
                 case 5:
@@ -122,14 +123,8 @@ public class SistemBiblioteca {
                 
                 
             }
-            
-            
-            
-            
-            
-            
-            
-        }while(opcion != 0) ;
+    
+        }while(opcion != 11) ;
         
     }
 }

@@ -5,8 +5,10 @@
 package com.mycompany.sistembiblioteca.vista;
 
 import com.mycompany.sistembiblioteca.modelos.Autor;
+import static com.mycompany.sistembiblioteca.modelos.Autor.buscarNombreAutor;
 import com.mycompany.sistembiblioteca.modelos.Biblioteca;
 import com.mycompany.sistembiblioteca.modelos.Categoria;
+import static com.mycompany.sistembiblioteca.modelos.Categoria.buscarNombreCategoria;
 import com.mycompany.sistembiblioteca.modelos.Libro;
 import java.util.Scanner;
 
@@ -16,40 +18,7 @@ import java.util.Scanner;
  */
 public class SistemBiblioteca {
     
-
-    public static Autor buscarNombreAutor(String nombre, Biblioteca biblioteca){
-            
-        Autor variable = null;
-        for(int i=0; i<biblioteca.getAutores().size();i++){
-            
-            if(nombre == biblioteca.getAutores().get(i).getName()){
-                
-                 variable = biblioteca.getAutores().get(i);
-            }
-            
-        }
-        return variable;
-    }
-    
-    public static Categoria buscarNombreCategoria(String nombre, Biblioteca biblioteca){
-            
-        Categoria variable = null;
-        for(int i=0; i<biblioteca.getCategorias().size();i++){
-            
-            if(nombre == biblioteca.getCategorias().get(i).getNombre()){
-                
-                 variable = biblioteca.getCategorias().get(i);
-            }
-            
-        }
-        return variable;
-    }
-    
-    
-    
     public static void main(String[] args) {
-        
-        
         
         Biblioteca biblioteca = new Biblioteca();
         Scanner sc = new Scanner(System.in);
@@ -69,7 +38,7 @@ public class SistemBiblioteca {
             System.out.println("8. Ver Libros de una Categoría");
             System.out.println("9. Ver Multas Acumuladas");
             System.out.println("10. Ver Estadísticas");
-            System.out.println("0. Salir");
+            System.out.println("11. Salir");
             
             opcion = sc.nextInt();
             sc.nextLine(); // Limpiar buffer
@@ -119,6 +88,7 @@ public class SistemBiblioteca {
                     
                 case 4:
                     
+                    
                     break; 
                     
                 case 5:
@@ -146,21 +116,18 @@ public class SistemBiblioteca {
                     
                     break;
                     
-                case 0:
+                case 11:
                     System.exit(0);
-                    break;    
+                    break;   
                     
+                default:
+                    System.out.println("Error! Ingrese una opcion valida...");
+                    break;
                 
                 
             }
-            
-            
-            
-            
-            
-            
-            
-        }while(opcion != 0) ;
+    
+        }while(opcion != 11) ;
         
     }
 }

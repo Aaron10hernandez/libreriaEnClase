@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.sistembiblioteca.modelos;
+import java.util.UUID;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Autor {
 
     public Autor(String name, String idAutor, String paisAutor, int anioNacimientoAutor) {
         this.name = name;
-        this.idAutor = idAutor;
+        this.idAutor = UUID.randomUUID().toString();        // genera ID's aleatorios a cada autor
         this.paisAutor = paisAutor;
         this.anioNacimientoAutor = anioNacimientoAutor;
     }
@@ -37,10 +38,6 @@ public class Autor {
         return anioNacimientoAutor;
     }
 
-    public void setIdAutor(String idAutor) {
-        this.idAutor = idAutor;
-    }
-
     public void setPaisAutor(String paisAutor) {
         this.paisAutor = paisAutor;
     }
@@ -54,6 +51,26 @@ public class Autor {
         return "Autor{" + "idAutor=" + idAutor + ", paisAutor=" + paisAutor + ", anioNacimientoAutor=" + anioNacimientoAutor + '}';
     }
 
-
+    public static Autor buscarNombreAutor(String nombre, Biblioteca biblioteca){
+            
+        Autor variable = null;
+        for(int i=0; i<biblioteca.getAutores().size();i++){
+            
+            if(nombre.equals(biblioteca.getAutores().get(i).getName())){
+                
+                 variable = biblioteca.getAutores().get(i);
+            }
+            
+        }
+        return variable;
+    }
     
+    public void verDetallesAutor(String nombre, Biblioteca biblioteca)  {
+        Autor variable = buscarNombreAutor(nombre, biblioteca); 
+        System.out.println("\t----INFORMACION DEL AUTOR----\t");
+        System.out.println("Nombre: " + getName());
+        System.out.println("Id: " + getIdAutor());
+        System.out.println("Pais: "+ getPaisAutor());
+        System.out.println("Año de nacimiento: "+ getAnioNacimientoAutor());
+    }
 }

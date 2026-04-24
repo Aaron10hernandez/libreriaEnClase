@@ -38,5 +38,20 @@ public class Categoria {
         return "ID: " + Id + " | Categoría: " + name;
     }
     
+    public static Categoria buscarNombreCategoria(String nombre, Biblioteca biblioteca) {
+
+        Categoria variable = null;
+
+        for(int i = 0; i < biblioteca.getCategorias().size(); i++) {
+
+            if(nombre.equals(biblioteca.getCategorias().get(i).getNombre())) {
+                System.out.println("Categoría encontrada exitosamente");
+                variable = biblioteca.getCategorias().get(i);
+                break; 
+            }
+        }
+
+        return variable;
+    }
     
 }

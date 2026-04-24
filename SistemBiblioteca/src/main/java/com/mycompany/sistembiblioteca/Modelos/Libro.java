@@ -59,6 +59,8 @@ public class Libro  {
     public void setDisponible(boolean disponible) {
         this.disponible = disponible;
     }
+    
+    
 
     @Override
     public String toString() {

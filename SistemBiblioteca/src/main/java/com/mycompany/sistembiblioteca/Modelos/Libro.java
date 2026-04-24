@@ -12,7 +12,7 @@ import com.mycompany.sistembiblioteca.modelos.Categoria;
  *
  * @author ESTUDIANTE
  */
-public class Libro {
+public class Libro  {
     private final String isbn;
     private final String titulo;
     private Autor autor;

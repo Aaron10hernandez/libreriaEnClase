@@ -28,7 +28,9 @@ public class SistemBiblioteca {
 
         System.out.println("=======SISTEMA GESTION BIBLIOTECA==========");
 
+
         int opcion=0;
+
         
         do{
             System.out.println("1. Crear nueva categoria");
@@ -42,7 +44,8 @@ public class SistemBiblioteca {
             System.out.println("9. Ver Multas Acumuladas");
             System.out.println("10. Ver Estadísticas");
             System.out.println("11. Salir");
-            
+            opcion = sc.nextInt();
+            sc.nextLine();
             switch(opcion){
                 
                 case 1:

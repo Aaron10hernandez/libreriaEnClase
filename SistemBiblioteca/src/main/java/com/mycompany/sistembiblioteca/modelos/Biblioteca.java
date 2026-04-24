@@ -1,34 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.sistembiblioteca.modelos;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author USUARIO
- */
 public class Biblioteca {
     
     private ArrayList<Categoria> categorias;
     private ArrayList<Autor> autores;
-    private ArrayList < Prestamo> prestamos;
+    private ArrayList<Prestamo> prestamos;
+    private ArrayList<Libro> libros;
 
-
-    private ArrayList <Libro> libros;
-
-
-    public Biblioteca() {}
+    public Biblioteca() {
+        this.categorias = new ArrayList<>();
+        this.autores = new ArrayList<>();
+        this.prestamos = new ArrayList<>();
+        this.libros = new ArrayList<>();
+    }
 
     public Biblioteca(ArrayList<Categoria> categorias, ArrayList<Autor> autores, ArrayList<Prestamo> prestamos, ArrayList<Libro> libros) {
         this.categorias = categorias;
         this.autores = autores;
         this.prestamos = prestamos;
         this.libros = libros;
-        }
-    
+    }
 
     public ArrayList<Categoria> getCategorias() { 
         return categorias; 
@@ -59,40 +52,67 @@ public class Biblioteca {
     }
     
     public void agregarLibro(Libro nuevoLibro) { 
-        if (this.libros == null) this.libros = new ArrayList<>();
         this.libros.add(nuevoLibro); 
     }
     
-    public void verLibrosDisponible()   {
-    boolean hayDisponibles = false;
-    
-    System.out.println("\n----LIBROS DISPONIBLES----");
-    
-    for(int i = 0; i < libros.size(); i++) {
+    public void verLibrosDisponible() {
+        boolean hayDisponibles = false;
         
-        Libro libro = libros.get(i);
+        System.out.println("\n----LIBROS DISPONIBLES----");
         
-        if(libro.isDisponible()) {
-            System.out.println("N°: " + (i + 1));
-            System.out.println("ISBN: " + libro.getIsbn());
-            System.out.println("Titulo: " + libro.getTitulo());
-            System.out.println("Autor: " + libro.getAutor().getName());
-            System.out.println("Categoria: " + libro.getCategoria().getNombre());
-            System.out.println("--------------------------");
-            hayDisponibles = true;
+        for (int i = 0; i < libros.size(); i++) {
+            Libro libro = libros.get(i);
+            if (libro.isDisponible()) {
+                System.out.println("N°: " + (i + 1));
+                System.out.println("ISBN: " + libro.getIsbn());
+                System.out.println("Titulo: " + libro.getTitulo());
+                System.out.println("Autor: " + libro.getAutor().getName());
+                System.out.println("Categoria: " + libro.getCategoria().getNombre());
+                System.out.println("--------------------------");
+                hayDisponibles = true;
+            }
+        }
+        
+        if (!hayDisponibles) {
+            System.out.println("No hay libros disponibles.");
         }
     }
-    
-        if(!hayDisponibles) {
-        System.out.println("No hay libros disponibles.");
+
+    public void verMultasAcumuladas(String usuario) {
+        double multaTotal = 0.0;
+        boolean tieneMultas = false;
+
+        System.out.println("\n---- MULTAS ACUMULADAS: " + usuario + " ----");
+
+        if (prestamos == null || prestamos.isEmpty()) {
+            System.out.println("No hay prestamos registrados.");
+            return;
         }
+
+        for (int i = 0; i < prestamos.size(); i++) {
+            if (prestamos.get(i).getUsuario().equalsIgnoreCase(usuario) && prestamos.get(i).getMulta() > 0) {
+                System.out.println("Libro : " + prestamos.get(i).getLibro().getTitulo()
+                                 + " | Multa: $" + prestamos.get(i).getMulta());
+                multaTotal = multaTotal + prestamos.get(i).getMulta();
+                tieneMultas = true;
+            }
+        }
+
+        if (!tieneMultas) {
+            System.out.println("El usuario '" + usuario + "' no tiene multas pendientes.");
+            return;
+        }
+
+        System.out.println("==========================================");
+        System.out.println("MULTA TOTAL: $" + multaTotal);
     }
-    
-        public void verEstadisticas() {
+
+    public void verEstadisticas() {
         System.out.println("\n========== ESTADISTICAS ==========");
 
+        // 1. TOTALES
         int totalLibros = 0;
-        int totalAutores = 0;       // 1. total
+        int totalAutores = 0;
         int totalCategorias = 0;
 
         if (libros != null) {
@@ -108,10 +128,10 @@ public class Biblioteca {
         System.out.println("\n--- Totales ---");
         System.out.println("Libros registrados : " + totalLibros);
         System.out.println("Autores registrados: " + totalAutores);
-        System.out.println("Categorías         : " + totalCategorias);
+        System.out.println("Categorias         : " + totalCategorias);
 
-
-        int disponibles = 0;         // 2. disponibles vs prestados
+        // 2. DISPONIBLES VS PRESTADOS
+        int disponibles = 0;
         int prestados = 0;
 
         if (libros != null) {
@@ -128,10 +148,10 @@ public class Biblioteca {
         System.out.println("Disponibles: " + disponibles);
         System.out.println("Prestados  : " + prestados);
 
-
-        System.out.println("\n--- Categoría con más libros ---");           // 3. Ccategoria mayor libros
+        // 3. CATEGORÍA CON MÁS LIBROS
+        System.out.println("\n--- Categoria con mas libros ---");
         if (categorias == null || categorias.isEmpty()) {
-            System.out.println("Sin categorías registradas.");
+            System.out.println("Sin categorias registradas.");
         } else {
             Categoria categoriaMayor = categorias.get(0);
             for (int i = 1; i < categorias.size(); i++) {
@@ -142,8 +162,8 @@ public class Biblioteca {
             System.out.println(categoriaMayor.getNombre() + " con " + categoriaMayor.getLibros().size() + " libro(s).");
         }
 
-
-        System.out.println("\n--- Autor con más libros ---");        // 4. AUTOR CON MÁS LIBR
+        // 4. AUTOR CON MÁS LIBROS
+        System.out.println("\n--- Autor con mas libros ---");
         if (libros == null || libros.isEmpty()) {
             System.out.println("Sin libros registrados.");
         } else {
@@ -206,7 +226,7 @@ public class Biblioteca {
         System.out.println("$" + totalMultas);
 
         System.out.println("\n===================================");
-        }
+    }
 }
 
 

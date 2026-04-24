@@ -33,10 +33,6 @@ public class Prestamo {
     public double getMulta() { 
         return multa; 
     }
-    
-    public static void setContadorId(int contadorId) {
-        Prestamo.contadorId = contadorId;
-    }
 
     public void setLibro(Libro libro) {
         this.libro = libro;
@@ -50,9 +46,6 @@ public class Prestamo {
         this.fecha = fecha;
     }
 
-    public static int getContadorId() {
-        return contadorId;
-    }
 
     public String getUsuario() {
         return usuario;

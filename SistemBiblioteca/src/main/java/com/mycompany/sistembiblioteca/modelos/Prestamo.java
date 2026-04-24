@@ -4,6 +4,8 @@
  */
 package com.mycompany.sistembiblioteca.modelos;
 
+import java.util.UUID;
+
 /**
  *
  * @author USUARIO
@@ -11,22 +13,15 @@ package com.mycompany.sistembiblioteca.modelos;
 public class Prestamo {
     
     private static int contadorId = 1;
-    private final int id;
+    private final String id;
     private Libro libro;
     private String usuario;
     private String fecha;
     private double multa;
 
     public Prestamo(Libro libro, String usuario, String fecha) {
-
-
         this.id = UUID.randomUUID().toString();
-
-        this.id = contadorId++;
-
-
-        this.id = contadorId++;
-
+        this.contadorId = contadorId++;
         this.libro = libro;
         this.usuario = usuario;
         this.fecha = fecha;
@@ -92,19 +87,6 @@ public class Prestamo {
         libro.setDisponible(false); 
         System.out.println("Libro '" + libro.getTitulo() + "' prestado exitosamente!");
         }
-    
-
-    
-    
-    public int getId() { return id; }
-    public Libro getLibro() { return libro; }
-    
-
-
-    
-    
-    public int getId() { return id; }
-    public Libro getLibro() { return libro; }
     
 
     public void devolver(Libro libro) {

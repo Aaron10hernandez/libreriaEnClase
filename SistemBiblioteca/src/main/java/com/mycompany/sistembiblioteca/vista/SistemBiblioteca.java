@@ -12,6 +12,7 @@ import static com.mycompany.sistembiblioteca.modelos.Categoria.buscarNombreCateg
 import static com.mycompany.sistembiblioteca.modelos.Categoria.buscarNombreLibro;
 import com.mycompany.sistembiblioteca.modelos.Libro;
 import com.mycompany.sistembiblioteca.modelos.Prestamo;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -24,10 +25,10 @@ public class SistemBiblioteca {
         
         Biblioteca biblioteca = new Biblioteca();
         Scanner sc = new Scanner(System.in);
-        
+
         System.out.println("=======SISTEMA GESTION BIBLIOTECA==========");
-        
-        int opcion=0;
+
+        int opcion;
         
         do{
             System.out.println("1. Crear nueva categoria");
@@ -40,101 +41,144 @@ public class SistemBiblioteca {
             System.out.println("8. Ver Libros de una Categoría");
             System.out.println("9. Ver Multas Acumuladas");
             System.out.println("10. Ver Estadísticas");
-            System.out.println("0. Salir");
+            System.out.println("11. Salir");
             
             switch(opcion){
                 
                 case 1:
                     
-                    System.out.println("Ingrese nombre de la nueva categoria: ");
+                    System.out.print("Nombre de la nueva categoría: ");
                     String nombre = sc.nextLine();
                     Categoria nuevaCategoria = new Categoria(nombre);
-                    
                     biblioteca.setCategorias(nuevaCategoria);
-                    
+                    System.out.println("Categoría '" + nombre + "' creada.");
                     break;
                   
                 case 2:
-                    System.out.println("Ingrese id del nuevo autor: ");
-                    String id = sc.nextLine();
-                    System.out.println("Ingrese nombre del nuevo autor: ");
-                    nombre = sc.nextLine();
-                    System.out.println("Ingrese pais del nuevo autor: ");
+                    System.out.print("Nombre del autor: ");
+                    String nombreAutor = sc.nextLine();
+                    System.out.print("Pais del autor: ");
                     String pais = sc.nextLine();
-                    System.out.println("Ingrese anio de nacimiento del nuevo autor: ");
+                    System.out.print("Año de nacimiento: ");
                     int anio = sc.nextInt();
-                    
-                    Autor nuevoAutor = new Autor(nombre,id,pais,anio);
+                    sc.nextLine();
+                    Autor nuevoAutor = new Autor(nombreAutor, "", pais, anio);
                     biblioteca.setAutores(nuevoAutor);
-                    
+                    System.out.println("Autor '" + nombreAutor + "' agregado.");
                     break;
                     
                 case 3:
-                    System.out.println("Ingrese titulo del nuevo libro: ");
-                    nombre = sc.nextLine();
-                    System.out.println("Ingrese el isbn del nuevo libro: ");
-                    String isbn = sc.nextLine();
-                    System.out.println("Ingrese nombre del autor del nuevo libro: ");
-                    String nombreAutor = sc.nextLine();
-                    System.out.println("Ingrese nombre del autor del nuevo libro: ");
-                    String nombreCategoria = sc.nextLine();
-                    
-                    Libro nuevoLibro = new Libro(isbn,nombre,buscarNombreAutor(nombreAutor,biblioteca),buscarNombreCategoria(nombreCategoria, biblioteca),true);
-                    
-                    
-                    
+                     System.out.print("Título del libro: ");
+                    String titulo = sc.nextLine();
+                    System.out.print("Nombre del autor: ");
+                    String aNombre = sc.nextLine();
+                    System.out.print("Nombre de la categoría: ");
+                    String cNombre = sc.nextLine();
+
+                    Autor autorLibro = buscarNombreAutor(aNombre, biblioteca);
+                    Categoria catLibro = buscarNombreCategoria(cNombre, biblioteca);
+
+                    if (autorLibro == null) {
+                        System.out.println("Autor no encontrado.");
+                    } else if (catLibro == null) {
+                        System.out.println("Categoría no encontrada.");
+                    } else {
+                        Libro nuevoLibro = new Libro("", titulo, autorLibro, catLibro, true);
+                        biblioteca.agregarLibro(nuevoLibro);
+                        catLibro.agregarLibro(nuevoLibro); 
+                        System.out.println("Libro '" + titulo + "' agregado.");
+                    }
                     break;
                     
                 case 4:
-                    
-                    System.out.println("Ingresa el nombre del libro:");
-                    nombre = sc.nextLine();
-                    System.out.println("Ingresa usuario:");
-                    nombreAutor=sc.nextLine();
-                    
-                    Libro eso = buscarNombreLibro(nombre,biblioteca);
-                    
-                    
-                    if(eso==null){
-                        System.out.println("ERROR");
-                    }else{
-                        Prestamo nuevoPrestamo = new Prestamo(eso,nombreAutor,"11/11/2002");
+                    System.out.print("Nombre del libro a prestar: ");
+                    String nombreLibro = sc.nextLine();
+                    System.out.print("Nombre del usuario: ");
+                    String usuario = sc.nextLine();
+
+                    Libro libroPrestar = buscarNombreLibro(nombreLibro, biblioteca);
+
+                    if (libroPrestar == null) {
+                        System.out.println("Libro no encontrado.");
+                    } else if (!libroPrestar.isDisponible()) {
+                        System.out.println("El libro no está disponible.");
+                    } else {
+                        Prestamo nuevoPrestamo = new Prestamo(libroPrestar, usuario, "");
+                        nuevoPrestamo.prestar(libroPrestar);
                         biblioteca.setPrestamos(nuevoPrestamo);
                     }
-                    
-                    
-                    
-                    
-                    break; 
+                    break;
                     
                 case 5:
-                    
-                    System.out.println("LIBROS DISPONIBLES:");
-                    
-                    for(int i =0, i<)
-                        System.out.println(biblioteca.getCategorias().get(i));
-                    
+                    System.out.print("Nombre del libro a devolver: ");
+                    String libroDevolver = sc.nextLine();
+
+                    Libro libroEncontrado = buscarNombreLibro(libroDevolver, biblioteca);
+
+                    if (libroEncontrado == null) {
+                        System.out.println("Libro no encontrado.");
+                    } else {
+                        
+                        Prestamo prestamoActivo = null;
+                        for (Prestamo p : biblioteca.getPrestamos()) {
+                            if (p.getLibro().getTitulo().equals(libroDevolver) && !p.getLibro().isDisponible()) {
+                                prestamoActivo = p;
+                                break;
+                            }
+                        }
+                        if (prestamoActivo == null) {
+                            System.out.println("No hay prestamo activo para ese libro.");
+                        } else {
+                            prestamoActivo.devolver(libroEncontrado);
+                        }
+                    }
                     break;
                   
                 case 6:
-                    
+                    biblioteca.verLibrosDisponible();
                     break;
                     
-                    
                 case 7:
-                    
+                    System.out.print("Nombre del autor: ");
+                    String buscarAutor = sc.nextLine();
+                    Autor autorEncontrado = buscarNombreAutor(buscarAutor, biblioteca);
+                    if (autorEncontrado == null) {
+                        System.out.println("Autor no encontrado.");
+                    } else {
+                        autorEncontrado.verDetallesAutor(buscarAutor, biblioteca);
+                    }
                     break;
                     
                 case 8:
-                    
+                    System.out.print("Nombre de la categoria: ");
+                    String buscarCat = sc.nextLine();
+                    Categoria catEncontrada = buscarNombreCategoria(buscarCat, biblioteca);
+                    if (catEncontrada == null) {
+                        System.out.println("Categoria no encontrada.");
+                    } else {
+                        ArrayList<Libro> librosCategoria = catEncontrada.buscarLibrosPorCategoria();
+                        if (librosCategoria.isEmpty()) {
+                            System.out.println("No hay libros en esta categoria.");
+                        } else {
+                            System.out.println("\n---- LIBROS EN " + buscarCat.toUpperCase() + " ----");
+                            for (Libro l : librosCategoria) {
+                                System.out.println("- " + l.getTitulo()
+                                    + " | Autor: " + l.getAutor().getName()
+                                    + " | Disponible: " + (l.isDisponible() ? "Si" : "No"));
+                            }
+                        }
+                    }
                     break;
+                   
                     
                 case 9:
-                    
+                    System.out.print("Nombre del usuario: ");
+                    String usuarioMultas = sc.nextLine();
+                    biblioteca.verMultasAcumuladas(usuarioMultas);
                     break;
                   
                 case 10:
-                    
+                    biblioteca.verEstadisticas();
                     break;
                     
                 case 11:
@@ -148,13 +192,7 @@ public class SistemBiblioteca {
                 
             }
             
-            
-            
-            
-            
-            
-            
-        }while(opcion != 0) ;
+        }while(opcion != 11) ;
         
     }
 }

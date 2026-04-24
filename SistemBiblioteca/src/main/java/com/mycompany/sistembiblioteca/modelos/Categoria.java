@@ -4,7 +4,7 @@
  */
 package com.mycompany.sistembiblioteca.modelos;
 
-import com.mycompany.sistembiblioteca.Modelos.Libro;
+import com.mycompany.sistembiblioteca.modelos.Libro;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +16,8 @@ public class Categoria {
     private int Id;
     private final String name;
     private ArrayList<Libro> Libros;
+    
+    
 
     public Categoria(String name) {
         this.Id = contadorId++;

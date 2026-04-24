@@ -9,7 +9,9 @@ import static com.mycompany.sistembiblioteca.modelos.Autor.buscarNombreAutor;
 import com.mycompany.sistembiblioteca.modelos.Biblioteca;
 import com.mycompany.sistembiblioteca.modelos.Categoria;
 import static com.mycompany.sistembiblioteca.modelos.Categoria.buscarNombreCategoria;
+import static com.mycompany.sistembiblioteca.modelos.Categoria.buscarNombreLibro;
 import com.mycompany.sistembiblioteca.modelos.Libro;
+import com.mycompany.sistembiblioteca.modelos.Prestamo;
 import java.util.Scanner;
 
 /**
@@ -84,6 +86,24 @@ public class SistemBiblioteca {
                     break;
                     
                 case 4:
+                    
+                    System.out.println("Ingresa el nombre del libro:");
+                    nombre = sc.nextLine();
+                    System.out.println("Ingresa usuario:");
+                    nombreAutor=sc.nextLine();
+                    
+                    Libro eso = buscarNombreLibro(nombre,biblioteca);
+                    
+                    
+                    if(eso==null){
+                        System.out.println("ERROR");
+                    }else{
+                        Prestamo nuevoPrestamo = new Prestamo(eso,nombreAutor,"11/11/2002");
+                        biblioteca.setPrestamos(nuevoPrestamo);
+                    }
+                    
+                    
+                    
                     
                     break; 
                     

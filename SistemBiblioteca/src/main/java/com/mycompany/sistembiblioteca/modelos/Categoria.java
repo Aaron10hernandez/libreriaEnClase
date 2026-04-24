@@ -15,23 +15,24 @@ public class Categoria {
     private static int contadorId = 1;
     private int Id;
     private final String name;
-    private ArrayList<Libro> Libros;
+    private ArrayList<Libro> libros;
     
     
 
     public Categoria(String name) {
         this.Id = contadorId++;
         this.name = name;
-        this.Libros = new ArrayList<>();
+        this.libros = new ArrayList<>();
     }
     
     public void agregarLibro(Libro libro) {
-        Libros.add(libro);
+        libros.add(libro);
     }
 
     public int getId() { return Id; }
     public String getNombre() { return name; }
-    public ArrayList<Libro> getLibros() { return Libros; }
+    
+    public ArrayList<Libro> getLibros() { return libros; }
 
     @Override
     public String toString() {
@@ -51,6 +52,25 @@ public class Categoria {
             }
         }
 
+        return variable;
+    }
+    
+    public static Libro buscarNombreLibro(String nombre, Biblioteca biblioteca){
+            
+        Libro variable = null;
+        
+        for(int i =0; i < biblioteca.getCategorias().size(); i++){
+            
+            Categoria categoriaActual = biblioteca.getCategorias().get(i);
+            
+            for(int j=0; j < categoriaActual.getLibros().size(); j++  ){
+                
+                if(nombre == categoriaActual.getLibros().get(j).getTitulo()){
+                    
+                    variable=categoriaActual.getLibros().get(j);
+                }
+            }
+        }
         return variable;
     }
     

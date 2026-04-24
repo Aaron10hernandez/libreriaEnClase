@@ -53,5 +53,20 @@ public class Categoria {
 
         return variable;
     }
-    
+        
+    public ArrayList<Libro> buscarLibrosPorCategoria() {
+        return this.Libros;
+    }
+
+
+    public ArrayList<Libro> buscarLibrosPorCategoria(boolean soloDisponibles) {
+        ArrayList<Libro> resultado = new ArrayList<>();
+        for (Libro libro : this.Libros) {
+            if (!soloDisponibles || libro.isDisponible()) {
+            resultado.add(libro);
+            }
+        }
+        return resultado;
+    }
+
 }

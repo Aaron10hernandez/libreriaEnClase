@@ -16,15 +16,24 @@ public class Prestamo {
     private Libro libro;
     private String usuario;
     private String fecha;
-    
+    private double multa;
 
     public Prestamo(Libro libro, String usuario, String fecha) {
-        this.id = UUID.randomUUID().toString();     // ID aleatorio automatico
+        this.id = UUID.randomUUID().toString();
         this.libro = libro;
         this.usuario = usuario;
         this.fecha = fecha;
+        this.multa = 0.0;
     }
 
+    
+    public void setMulta(double multa) { 
+        this.multa = multa; 
+    }
+    public double getMulta() { 
+        return multa; 
+    }
+    
     public static void setContadorId(int contadorId) {
         Prestamo.contadorId = contadorId;
     }
@@ -53,8 +62,12 @@ public class Prestamo {
         return fecha;
     }
     
-    public String getId() { return id; }
-    public Libro getLibro() { return libro; }
+    public String getId() { 
+        return id; 
+    }
+    public Libro getLibro() { 
+        return libro; 
+    }
     
     public void prestar(Libro libro) {
     
@@ -68,7 +81,7 @@ public class Prestamo {
         return;
         }
 
-        libro.setDisponible(false); // ✅ Lo marca como no disponible
+        libro.setDisponible(false); 
         System.out.println("Libro '" + libro.getTitulo() + "' prestado exitosamente!");
         }
     

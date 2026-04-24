@@ -54,7 +54,8 @@ public class Biblioteca {
         this.prestamos.add(nuevoPrestamo); 
     }
     
-    public void aggLibro(Libro nuevoLibro) { 
+    public void agregarLibro(Libro nuevoLibro) { 
+        if (this.libros == null) this.libros = new ArrayList<>();
         this.libros.add(nuevoLibro); 
     }
     

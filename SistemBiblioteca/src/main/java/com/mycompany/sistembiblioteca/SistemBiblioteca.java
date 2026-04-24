@@ -71,6 +71,9 @@ public class SistemBiblioteca {
             System.out.println("10. Ver Estadísticas");
             System.out.println("0. Salir");
             
+            opcion = sc.nextInt();
+            sc.nextLine(); // Limpiar buffer
+
             switch(opcion){
                 
                 case 1:

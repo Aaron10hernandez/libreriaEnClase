@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.sistembiblioteca.modelos;
-import java.util.UUID;
 
 /**
  *
@@ -12,14 +11,18 @@ import java.util.UUID;
 public class Prestamo {
     
     private static int contadorId = 1;
-    private final String id;
+    private final int id;
     private Libro libro;
     private String usuario;
     private String fecha;
     private double multa;
 
     public Prestamo(Libro libro, String usuario, String fecha) {
+
         this.id = UUID.randomUUID().toString();
+
+        this.id = contadorId++;
+
         this.libro = libro;
         this.usuario = usuario;
         this.fecha = fecha;
@@ -62,6 +65,7 @@ public class Prestamo {
         return fecha;
     }
     
+
     public String getId() { 
         return id; 
     }
@@ -85,21 +89,17 @@ public class Prestamo {
         System.out.println("Libro '" + libro.getTitulo() + "' prestado exitosamente!");
         }
     
+
+    
+    
+    public int getId() { return id; }
+    public Libro getLibro() { return libro; }
+    
+
     public void devolver(Libro libro) {
         
-      if(libro == null) {
-        System.out.println("Error: el libro no existe.");
-        return;
-        }
-
-        if(libro.isDisponible()) {
-        System.out.println("El libro ya está disponible, no fue prestado.");
-        return;
-        }
-
         libro.setDisponible(true);
-        System.out.println("Libro '" + libro.getTitulo() + "' devuelto exitosamente!");
-        }
-    
-    
+        System.out.println("Libro devuelto exitosamente!");
+        
+    }
 }

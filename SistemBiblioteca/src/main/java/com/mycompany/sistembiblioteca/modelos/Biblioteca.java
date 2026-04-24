@@ -15,15 +15,18 @@ public class Biblioteca {
     private ArrayList<Categoria> categorias;
     private ArrayList<Autor> autores;
     private ArrayList < Prestamo> prestamos;
+
+
     private ArrayList <Libro> libros;
+
 
     public Biblioteca() {
     }
 
     public Biblioteca(ArrayList<Categoria> categorias, ArrayList<Autor> autores, ArrayList<Prestamo> prestamos) {
-        this.categorias = new ArrayList<>();
-        this.autores = new ArrayList<>();
-        this.prestamos = new ArrayList<>();
+        this.categorias = categorias;
+        this.autores = autores;
+        this.prestamos = prestamos;
     }
 
     public ArrayList<Categoria> getCategorias() { 

@@ -6,6 +6,7 @@ package com.mycompany.sistembiblioteca.modelos;
 
 import com.mycompany.sistembiblioteca.modelos.Autor;
 import com.mycompany.sistembiblioteca.modelos.Categoria;
+import java.util.UUID;
 
 
 /**
@@ -20,7 +21,7 @@ public class Libro  {
     private boolean disponible;
 
     public Libro(String isbn, String titulo, Autor autor, Categoria categoria, boolean disponible) {
-        this.isbn = isbn;
+        this.isbn = UUID.randomUUID().toString();
         this.titulo = titulo;
         this.autor = autor;
         this.categoria = categoria;
@@ -64,7 +65,7 @@ public class Libro  {
         return "Libro{" + "isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", categoria=" + categoria + ", disponible=" + disponible + '}';
     }
 
-    public void aggLibro()
+   
     
     
     

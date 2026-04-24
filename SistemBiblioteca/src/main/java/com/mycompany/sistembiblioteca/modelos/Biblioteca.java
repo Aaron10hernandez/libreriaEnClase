@@ -15,7 +15,7 @@ public class Biblioteca {
     private ArrayList<Categoria> categorias;
     private ArrayList<Autor> autores;
     private ArrayList < Prestamo> prestamos;
-    private ArrayList <Libro> Libro;
+    private ArrayList <Libro> libros;
 
     public Biblioteca() {
     }
@@ -26,29 +26,64 @@ public class Biblioteca {
         this.prestamos = new ArrayList<>();
     }
 
-    public ArrayList<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public ArrayList<Autor> getAutores() {
-        return autores;
-    }
-
-    public ArrayList<Prestamo> getPrestamos() {
-        return prestamos;
-    }
-
-    public void setCategorias(Categoria nuevaCategoria) {
-        this.categorias.add(nuevaCategoria);
-    }
-
-    public void setAutores(Autor nuevoAutor) {
-        this.autores.add(nuevoAutor);
-    }
-
-    public void setPrestamos(Prestamo nuevoPrestamo) {
-        this.prestamos.add(nuevoPrestamo);
+    public ArrayList<Categoria> getCategorias() { 
+        return categorias; 
     }
     
+    public ArrayList<Autor> getAutores() { 
+        return autores; 
+    }
+    
+    public ArrayList<Prestamo> getPrestamos() { 
+        return prestamos; 
+    }
+    
+    public ArrayList<Libro> getLibros() { 
+        return libros; 
+    }
+        
+    public void setCategorias(Categoria nuevaCategoria) { 
+        this.categorias.add(nuevaCategoria); 
+    }
+    
+    public void setAutores(Autor nuevoAutor) { 
+        this.autores.add(nuevoAutor); 
+    }
+    
+    public void setPrestamos(Prestamo nuevoPrestamo) { 
+        this.prestamos.add(nuevoPrestamo); 
+    }
+    
+    public void aggLibro(Libro nuevoLibro) { 
+        this.libros.add(nuevoLibro); 
+    }
+    
+    public void verLibrosDisponible()   {
+    boolean hayDisponibles = false;
+    
+    System.out.println("\n----LIBROS DISPONIBLES----");
+    
+    for(int i = 0; i < libros.size(); i++) {
+        
+        Libro libro = libros.get(i);
+        
+        if(libro.isDisponible()) {
+            System.out.println("N°: " + (i + 1));
+            System.out.println("ISBN: " + libro.getIsbn());
+            System.out.println("Título: " + libro.getTitulo());
+            System.out.println("Autor: " + libro.getAutor().getName());
+            System.out.println("Categoría: " + libro.getCategoria().getNombre());
+            System.out.println("--------------------------");
+            hayDisponibles = true;
+        }
+    }
+    
+        if(!hayDisponibles) {
+        System.out.println("No hay libros disponibles.");
+        }
+    }
     
 }
+    
+    
+

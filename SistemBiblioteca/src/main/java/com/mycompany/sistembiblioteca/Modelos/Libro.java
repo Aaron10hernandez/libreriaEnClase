@@ -66,7 +66,7 @@ public class Libro  {
         return "Libro{" + "isbn=" + isbn + ", titulo=" + titulo + ", autor=" + autor + ", categoria=" + categoria + ", disponible=" + disponible + '}';
     }
 
-    
+    public void aggLibro()
     
     
     

@@ -20,14 +20,15 @@ public class Biblioteca {
     private ArrayList <Libro> libros;
 
 
-    public Biblioteca() {
-    }
+    public Biblioteca() {}
 
-    public Biblioteca(ArrayList<Categoria> categorias, ArrayList<Autor> autores, ArrayList<Prestamo> prestamos) {
+    public Biblioteca(ArrayList<Categoria> categorias, ArrayList<Autor> autores, ArrayList<Prestamo> prestamos, ArrayList<Libro> libros) {
         this.categorias = categorias;
         this.autores = autores;
         this.prestamos = prestamos;
-    }
+        this.libros = libros;
+        }
+    
 
     public ArrayList<Categoria> getCategorias() { 
         return categorias; 
@@ -87,126 +88,128 @@ public class Biblioteca {
         }
     }
     
-    public void verEstadisticas() {
-    System.out.println("\n========== ESTADISTICAS ==========");
+        public void verEstadisticas() {
+        System.out.println("\n========== ESTADISTICAS ==========");
 
-    int totalLibros = 0;
-    int totalAutores = 0;       // 1. total
-    int totalCategorias = 0;
+        int totalLibros = 0;
+        int totalAutores = 0;       // 1. total
+        int totalCategorias = 0;
 
-    if (libros != null) {
-        totalLibros = libros.size();
-    }
-    if (autores != null) {
-        totalAutores = autores.size();
-    }
-    if (categorias != null) {
-        totalCategorias = categorias.size();
-    }
-
-    System.out.println("\n--- Totales ---");
-    System.out.println("Libros registrados : " + totalLibros);
-    System.out.println("Autores registrados: " + totalAutores);
-    System.out.println("Categorías         : " + totalCategorias);
-
-   
-    int disponibles = 0;         // 2. disponibles vs prestados
-    int prestados = 0;
-
-    if (libros != null) {
-        for (int i = 0; i < libros.size(); i++) {
-            if (libros.get(i).isDisponible()) {
-                disponibles++;
-            } else {
-                prestados++;
-            }
+        if (libros != null) {
+            totalLibros = libros.size();
         }
-    }
-
-    System.out.println("\n--- Disponibilidad ---");
-    System.out.println("Disponibles: " + disponibles);
-    System.out.println("Prestados  : " + prestados);
-
-
-    System.out.println("\n--- Categoría con más libros ---");           // 3. Ccategoria mayor libros
-    if (categorias == null || categorias.isEmpty()) {
-        System.out.println("Sin categorías registradas.");
-    } else {
-        Categoria categoriaMayor = categorias.get(0);
-        for (int i = 1; i < categorias.size(); i++) {
-            if (categorias.get(i).getLibros().size() > categoriaMayor.getLibros().size()) {
-                categoriaMayor = categorias.get(i);
-            }
+        if (autores != null) {
+            totalAutores = autores.size();
         }
-        System.out.println(categoriaMayor.getNombre() + " con " + categoriaMayor.getLibros().size() + " libro(s).");
-    }
+        if (categorias != null) {
+            totalCategorias = categorias.size();
+        }
 
-   
-    System.out.println("\n--- Autor con más libros ---");        // 4. AUTOR CON MÁS LIBR
-    if (libros == null || libros.isEmpty()) {
-        System.out.println("Sin libros registrados.");
-    } else {
-        Autor autorMayor = null;
-        int maxLibros = 0;
+        System.out.println("\n--- Totales ---");
+        System.out.println("Libros registrados : " + totalLibros);
+        System.out.println("Autores registrados: " + totalAutores);
+        System.out.println("Categorías         : " + totalCategorias);
 
-        for (int i = 0; i < autores.size(); i++) {
-            int count = 0;
-            for (int j = 0; j < libros.size(); j++) {
-                if (libros.get(j).getAutor().getName().equals(autores.get(i).getName())) {
-                    count++;
+
+        int disponibles = 0;         // 2. disponibles vs prestados
+        int prestados = 0;
+
+        if (libros != null) {
+            for (int i = 0; i < libros.size(); i++) {
+                if (libros.get(i).isDisponible()) {
+                    disponibles++;
+                } else {
+                    prestados++;
                 }
             }
-            if (count > maxLibros) {
-                maxLibros = count;
-                autorMayor = autores.get(i);
-            }
         }
 
-        if (autorMayor != null) {
-            System.out.println(autorMayor.getName() + " con " + maxLibros + " libro(s).");
+        System.out.println("\n--- Disponibilidad ---");
+        System.out.println("Disponibles: " + disponibles);
+        System.out.println("Prestados  : " + prestados);
+
+
+        System.out.println("\n--- Categoría con más libros ---");           // 3. Ccategoria mayor libros
+        if (categorias == null || categorias.isEmpty()) {
+            System.out.println("Sin categorías registradas.");
         } else {
-            System.out.println("Sin datos.");
-        }
-    }
-
-    // 5. LIBRO MÁS PRESTADO
-    System.out.println("\n--- Libro mas prestado ---");
-    if (prestamos == null || prestamos.isEmpty()) {
-        System.out.println("Sin prestamos registrados.");
-    } else {
-        String tituloMasPrestado = "";
-        int maxPrestamos = 0;
-
-        for (int i = 0; i < prestamos.size(); i++) {
-            String titulo = prestamos.get(i).getLibro().getTitulo();
-            int count = 0;
-            for (int j = 0; j < prestamos.size(); j++) {
-                if (prestamos.get(j).getLibro().getTitulo().equals(titulo)) {
-                    count++;
+            Categoria categoriaMayor = categorias.get(0);
+            for (int i = 1; i < categorias.size(); i++) {
+                if (categorias.get(i).getLibros().size() > categoriaMayor.getLibros().size()) {
+                    categoriaMayor = categorias.get(i);
                 }
             }
-            if (count > maxPrestamos) {
-                maxPrestamos = count;
-                tituloMasPrestado = titulo;
+            System.out.println(categoriaMayor.getNombre() + " con " + categoriaMayor.getLibros().size() + " libro(s).");
+        }
+
+
+        System.out.println("\n--- Autor con más libros ---");        // 4. AUTOR CON MÁS LIBR
+        if (libros == null || libros.isEmpty()) {
+            System.out.println("Sin libros registrados.");
+        } else {
+            Autor autorMayor = null;
+            int maxLibros = 0;
+
+            for (int i = 0; i < autores.size(); i++) {
+                int count = 0;
+                for (int j = 0; j < libros.size(); j++) {
+                    if (libros.get(j).getAutor().getName().equals(autores.get(i).getName())) {
+                        count++;
+                    }
+                }
+                if (count > maxLibros) {
+                    maxLibros = count;
+                    autorMayor = autores.get(i);
+                }
+            }
+
+            if (autorMayor != null) {
+                System.out.println(autorMayor.getName() + " con " + maxLibros + " libro(s).");
+            } else {
+                System.out.println("Sin datos.");
             }
         }
-        System.out.println(tituloMasPrestado + " con " + maxPrestamos + " prestamo(s).");
-    }
 
-    // 6. TOTAL DE MULTAS
-    System.out.println("\n--- Total multas acumuladas ---");
-    double totalMultas = 0.0;
+        // 5. LIBRO MÁS PRESTADO
+        System.out.println("\n--- Libro mas prestado ---");
+        if (prestamos == null || prestamos.isEmpty()) {
+            System.out.println("Sin prestamos registrados.");
+        } else {
+            String tituloMasPrestado = "";
+            int maxPrestamos = 0;
 
-    if (prestamos != null) {
-        for (int i = 0; i < prestamos.size(); i++) {
-            totalMultas = totalMultas + prestamos.get(i).getMulta();
+            for (int i = 0; i < prestamos.size(); i++) {
+                String titulo = prestamos.get(i).getLibro().getTitulo();
+                int count = 0;
+                for (int j = 0; j < prestamos.size(); j++) {
+                    if (prestamos.get(j).getLibro().getTitulo().equals(titulo)) {
+                        count++;
+                    }
+                }
+                if (count > maxPrestamos) {
+                    maxPrestamos = count;
+                    tituloMasPrestado = titulo;
+                }
+            }
+            System.out.println(tituloMasPrestado + " con " + maxPrestamos + " prestamo(s).");
         }
-    }
-    System.out.println("$" + totalMultas);
 
-    System.out.println("\n===================================");
+        // 6. TOTAL DE MULTAS
+        System.out.println("\n--- Total multas acumuladas ---");
+        double totalMultas = 0.0;
+
+        if (prestamos != null) {
+            for (int i = 0; i < prestamos.size(); i++) {
+                totalMultas = totalMultas + prestamos.get(i).getMulta();
+            }
+        }
+        System.out.println("$" + totalMultas);
+
+        System.out.println("\n===================================");
+        }
 }
-}
+
+
     
     
-
+ 

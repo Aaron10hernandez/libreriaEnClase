@@ -28,7 +28,7 @@ public class SistemBiblioteca {
 
         System.out.println("=======SISTEMA GESTION BIBLIOTECA==========");
 
-        int opcion;
+        int opcion=0;
         
         do{
             System.out.println("1. Crear nueva categoria");

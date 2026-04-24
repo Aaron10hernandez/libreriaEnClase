@@ -30,7 +30,9 @@ public class Categoria {
     }
 
     public int getId() { return Id; }
-    public String getNombre() { return name; }
+    public String getNombre() { 
+        return name; 
+    }
     
     public ArrayList<Libro> getLibros() { return libros; }
 

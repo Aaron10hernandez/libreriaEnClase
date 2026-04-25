@@ -64,7 +64,7 @@ public class SistemBiblioteca {
                     String pais = sc.nextLine();
                     System.out.print("Año de nacimiento: ");
                     int anio = sc.nextInt();
-                    sc.nextLine();
+                    //sc.nextLine();
                     Autor nuevoAutor = new Autor(nombreAutor, "", pais, anio);
                     biblioteca.setAutores(nuevoAutor);
                     System.out.println("Autor '" + nombreAutor + "' agregado.");
@@ -80,17 +80,50 @@ public class SistemBiblioteca {
 
                     Autor autorLibro = buscarNombreAutor(aNombre, biblioteca);
                     Categoria catLibro = buscarNombreCategoria(cNombre, biblioteca);
+                    
+                    
 
+                    
                     if (autorLibro == null) {
-                        System.out.println("Autor no encontrado.");
-                    } else if (catLibro == null) {
-                        System.out.println("Categoría no encontrada.");
-                    } else {
-                        Libro nuevoLibro = new Libro("", titulo, autorLibro, catLibro, true);
-                        biblioteca.agregarLibro(nuevoLibro);
-                        catLibro.agregarLibro(nuevoLibro); 
-                        System.out.println("Libro '" + titulo + "' agregado.");
-                    }
+                        System.out.println("Autor no encontrado. Ingrese la informacion del autor del libro: ");
+                        
+                        System.out.print("Nombre del autor: ");
+                        nombreAutor = sc.nextLine();
+                        System.out.print("Pais del autor: ");
+                        pais = sc.nextLine(); 
+                        System.out.print("Año de nacimiento: ");
+                        anio = sc.nextInt();
+                        //sc.nextLine();
+                        nuevoAutor = new Autor(nombreAutor, "", pais, anio);
+                        biblioteca.setAutores(nuevoAutor);
+                        
+                        System.out.println("Autor '" + nombreAutor + "' agregado.");
+
+                        
+                        }
+                    
+                        if (catLibro == null) {
+                            System.out.println("Categoría no encontrada. Creando nueva categoria: ");
+                            
+                            nuevaCategoria = new Categoria(cNombre);
+                            biblioteca.setCategorias(nuevaCategoria);
+                            System.out.println("Categoría '" + cNombre + "' creada.");
+                            
+                            
+                        } 
+                        
+                        autorLibro = buscarNombreAutor(aNombre, biblioteca);
+                        catLibro = buscarNombreCategoria(cNombre, biblioteca);
+                        
+                        if( (autorLibro != null) && (catLibro!=null)  ) {
+                            
+                                Libro nuevoLibro = new Libro("", titulo, autorLibro, catLibro, true);
+                                biblioteca.agregarLibro(nuevoLibro);
+                                catLibro.agregarLibro(nuevoLibro); 
+                                System.out.println("Libro '" + titulo + "' agregado.");
+                            
+                        }
+                        
                     break;
                     
                 case 4:
@@ -171,6 +204,8 @@ public class SistemBiblioteca {
                             }
                         }
                     }
+                    
+                    System.out.println("=============================");
                     break;
                    
                     
